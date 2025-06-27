@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Currency Budget Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Multi-Currency Budget Tracker</h1>
+            <p>Track your expenses across different currencies</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>Add Expense</h2>
+                <form id="expense-form">
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Food & Dining">🍽️ Food & Dining</option>
+                            <option value="Transportation">🚗 Transportation</option>
+                            <option value="Shopping">🛍️ Shopping</option>
+                            <option value="Entertainment">🎬 Entertainment</option>
+                            <option value="Bills & Utilities">💡 Bills & Utilities</option>
+                            <option value="Healthcare">🏥 Healthcare</option>
+                            <option value="Education">📚 Education</option>
+                            <option value="Travel">✈️ Travel</option>
+                            <option value="Other">📝 Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currency">Currency:</label>
+                        <select id="currency" required>
+                            <option value="USD">🇺🇸 USD - US Dollar</option>
+                            <option value="EUR">🇪🇺 EUR - Euro</option>
+                            <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                            <option value="KRW">🇰🇷 KRW - Korean Won</option>
+                            <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                            <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                            <option value="GBP">🇬🇧 GBP - British Pound</option>
+                            <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+                            <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description (Optional):</label>
+                        <input type="text" id="description" placeholder="Brief description of expense">
+                    </div>
+
+                    <button type="submit" class="btn-primary">Add Expense</button>
+                </form>
+
+                <div class="currency-converter">
+                    <h3>Base Currency for Chart</h3>
+                    <select id="base-currency">
+                        <option value="USD">🇺🇸 USD - US Dollar</option>
+                        <option value="EUR">🇪🇺 EUR - Euro</option>
+                        <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                        <option value="KRW">🇰🇷 KRW - Korean Won</option>
+                        <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                        <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="visualization-section">
+                <h2>Expense Breakdown</h2>
+                <div class="chart-container">
+                    <canvas id="expense-chart"></canvas>
+                </div>
+                <div class="total-display">
+                    <h3>Total Expenses: <span id="total-amount">0.00</span> <span id="display-currency">USD</span></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="expense-list-section">
+            <h2>Recent Expenses</h2>
+            <div class="controls">
+                <button id="clear-all" class="btn-danger">Clear All Expenses</button>
+                <button id="export-data" class="btn-secondary">Export Data</button>
+            </div>
+            <div id="expense-list" class="expense-list"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
