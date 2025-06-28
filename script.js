@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             item.className = 'expense-item';
             item.innerHTML = `
                 <div class="expense-details">
-                    <div class="expense-category">${expense.category.split(' ')[1]}</div>
+                    // FIX: Used the full expense.category directly instead of splitting it.
+                    <div class="expense-category">${expense.category}</div>
                     <div class="expense-description">${expense.description || 'No description'}</div>
                 </div>
                 <div class="expense-amount">
@@ -80,7 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         expenses.forEach(expense => {
             const convertedAmount = convertCurrency(expense.amount, expense.currency, baseCurrency);
-            const categoryName = expense.category.split(' ')[1]; // Get name without emoji
+            // FIX: Used the full expense.category for aggregation.
+            const categoryName = expense.category; 
             
             if (aggregatedData[categoryName]) {
                 aggregatedData[categoryName] += convertedAmount;
@@ -164,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         expenses.push(newExpense);
         saveAndRender();
         expenseForm.reset();
+        categorySelect.focus(); // Focus on the first field for quick entry
     });
 
     // Delete an expense
