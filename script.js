@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
             item.className = 'expense-item';
             item.innerHTML = `
                 <div class="expense-details">
-                    // FIX: Used the full expense.category directly instead of splitting it.
                     <div class="expense-category">${expense.category}</div>
                     <div class="expense-description">${expense.description || 'No description'}</div>
                 </div>
@@ -81,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         expenses.forEach(expense => {
             const convertedAmount = convertCurrency(expense.amount, expense.currency, baseCurrency);
-            // FIX: Used the full expense.category for aggregation.
             const categoryName = expense.category; 
             
             if (aggregatedData[categoryName]) {
